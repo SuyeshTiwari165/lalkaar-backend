@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sos_requests",
+  "info": {
+    "singularName": "sos-request",
+    "pluralName": "sos-requests",
+    "displayName": "sosRequest"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Description": {
+      "type": "text"
+    },
+    "Evidence": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "sos_requests"
+    },
+    "Severity": {
+      "type": "enumeration",
+      "enum": [
+        "High",
+        "Medium",
+        "Low"
+      ]
+    }
+  }
+}
