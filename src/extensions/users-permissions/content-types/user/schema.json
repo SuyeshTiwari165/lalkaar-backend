@@ -9,8 +9,7 @@
     "displayName": "User"
   },
   "options": {
-    "draftAndPublish": false,
-    "timestamps": true
+    "draftAndPublish": false
   },
   "attributes": {
     "username": {
@@ -71,6 +70,20 @@
       "relation": "oneToMany",
       "target": "api::sos-request.sos-request",
       "mappedBy": "users_permissions_user"
+    },
+    "defaultAddress": {
+      "type": "customField",
+      "customField": "plugin::google-maps.location-picker"
+    },
+    "mobileNumber": {
+      "type": "integer",
+      "required": true
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
     }
   }
 }

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "sos-request",
     "pluralName": "sos-requests",
-    "displayName": "sosRequest"
+    "displayName": "sosRequest",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,14 +16,15 @@
       "type": "text"
     },
     "Evidence": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "users_permissions_user": {
       "type": "relation",
@@ -37,6 +39,10 @@
         "Medium",
         "Low"
       ]
+    },
+    "getLocation": {
+      "type": "customField",
+      "customField": "plugin::google-maps.location-picker"
     }
   }
 }

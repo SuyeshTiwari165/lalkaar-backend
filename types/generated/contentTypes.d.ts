@@ -368,6 +368,7 @@ export interface ApiSosRequestSosRequest extends Schema.CollectionType {
     singularName: 'sos-request';
     pluralName: 'sos-requests';
     displayName: 'sosRequest';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -381,6 +382,8 @@ export interface ApiSosRequestSosRequest extends Schema.CollectionType {
       'plugin::users-permissions.user'
     >;
     Severity: Attribute.Enumeration<['High', 'Medium', 'Low']>;
+    getLocation: Attribute.JSON &
+      Attribute.CustomField<'plugin::google-maps.location-picker'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -799,7 +802,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     username: Attribute.String &
@@ -833,6 +835,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::sos-request.sos-request'
     >;
+    defaultAddress: Attribute.JSON &
+      Attribute.CustomField<'plugin::google-maps.location-picker'>;
+    mobileNumber: Attribute.Integer & Attribute.Required;
+    firstName: Attribute.String;
+    lastName: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
