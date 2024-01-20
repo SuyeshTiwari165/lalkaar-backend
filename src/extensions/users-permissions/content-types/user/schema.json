@@ -76,14 +76,25 @@
       "customField": "plugin::google-maps.location-picker"
     },
     "mobileNumber": {
-      "type": "integer",
-      "required": true
+      "type": "biginteger",
+      "required": false
     },
     "firstName": {
       "type": "string"
     },
     "lastName": {
       "type": "string"
+    },
+    "profilePicture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

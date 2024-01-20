@@ -837,9 +837,10 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     >;
     defaultAddress: Attribute.JSON &
       Attribute.CustomField<'plugin::google-maps.location-picker'>;
-    mobileNumber: Attribute.Integer & Attribute.Required;
+    mobileNumber: Attribute.BigInteger;
     firstName: Attribute.String;
     lastName: Attribute.String;
+    profilePicture: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
