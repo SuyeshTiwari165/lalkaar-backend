@@ -362,6 +362,50 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiAcceptSosRequestAcceptSosRequest
+  extends Schema.CollectionType {
+  collectionName: 'accept_sos_requests';
+  info: {
+    singularName: 'accept-sos-request';
+    pluralName: 'accept-sos-requests';
+    displayName: 'AcceptSosRequest';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    live_location: Attribute.JSON &
+      Attribute.CustomField<'plugin::google-maps.location-picker'>;
+    accepted: Attribute.Boolean;
+    sos_request: Attribute.Relation<
+      'api::accept-sos-request.accept-sos-request',
+      'manyToOne',
+      'api::sos-request.sos-request'
+    >;
+    users_permissions_user: Attribute.Relation<
+      'api::accept-sos-request.accept-sos-request',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::accept-sos-request.accept-sos-request',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::accept-sos-request.accept-sos-request',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSosRequestSosRequest extends Schema.CollectionType {
   collectionName: 'sos_requests';
   info: {
@@ -384,6 +428,12 @@ export interface ApiSosRequestSosRequest extends Schema.CollectionType {
     Severity: Attribute.Enumeration<['High', 'Medium', 'Low']>;
     getLocation: Attribute.JSON &
       Attribute.CustomField<'plugin::google-maps.location-picker'>;
+    peopleCount: Attribute.Integer;
+    accept_sos_requests: Attribute.Relation<
+      'api::sos-request.sos-request',
+      'oneToMany',
+      'api::accept-sos-request.accept-sos-request'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -841,6 +891,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     firstName: Attribute.String;
     lastName: Attribute.String;
     profilePicture: Attribute.Media;
+    accept_sos_requests: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::accept-sos-request.accept-sos-request'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -868,6 +923,7 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::accept-sos-request.accept-sos-request': ApiAcceptSosRequestAcceptSosRequest;
       'api::sos-request.sos-request': ApiSosRequestSosRequest;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;

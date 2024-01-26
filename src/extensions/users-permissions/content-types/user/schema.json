@@ -95,6 +95,12 @@
         "videos",
         "audios"
       ]
+    },
+    "accept_sos_requests": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::accept-sos-request.accept-sos-request",
+      "mappedBy": "users_permissions_user"
     }
   }
 }

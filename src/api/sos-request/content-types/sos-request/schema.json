@@ -43,6 +43,15 @@
     "getLocation": {
       "type": "customField",
       "customField": "plugin::google-maps.location-picker"
+    },
+    "peopleCount": {
+      "type": "integer"
+    },
+    "accept_sos_requests": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::accept-sos-request.accept-sos-request",
+      "mappedBy": "sos_request"
     }
   }
 }

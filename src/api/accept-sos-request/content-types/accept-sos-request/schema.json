@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "accept_sos_requests",
+  "info": {
+    "singularName": "accept-sos-request",
+    "pluralName": "accept-sos-requests",
+    "displayName": "AcceptSosRequest",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "live_location": {
+      "type": "customField",
+      "customField": "plugin::google-maps.location-picker"
+    },
+    "accepted": {
+      "type": "boolean"
+    },
+    "sos_request": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::sos-request.sos-request",
+      "inversedBy": "accept_sos_requests"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "accept_sos_requests"
+    }
+  }
+}
